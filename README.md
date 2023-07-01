@@ -2,8 +2,8 @@
 
 **Chat with your own assistant that takes on different personalities or request it so summarize arbitrarily long PDF files or web pages.**
 
-GPT Chat and Summarization Assistant is made to be easy and flexible to use. You can put a personality on it and have a discussion. You can set the randomness factor that influences the "creativity" of answers (0 = predictive, 1.5 = pretty random). 
-It can also summarize an arbitrarily long PDF file or a web page - in a form of a textual summary, bullets or with a focus on a specific question.
+GPT Chat and Summarization Assistant is a Python web app (using [Dash framework](https://github.com/plotly/dash)) made to be easy and flexible to use. You can put a personality on it and have a nice discussion. By setting the randomness factor you can influence the "creativity" of responses. 
+The AI Assistant can summarize an arbitrarily long PDF file or a web page - as an ordinary textual summary, as bullets or with a focus on a specific question.
 
 ## Usage
 
@@ -31,18 +31,17 @@ In app.py:
 
 Run the assistant with `python app.py` and click on the link in the terminal.
 
-By running GPT Chat and Summarization Assistant you agree to our [disclaimer]().
+By running GPT Chat and Summarization Assistant you agree to our [disclaimer](https://github.com/LeRobert/gpt-chat-summarization-assistant/blob/main/DISCLAIMER.md).
 
 ## Features
 
-- Set the personality of the AI Assistant from preset personalities or describe a custom one
+- Set the personality of the AI Assistant from preset personalities - or describe a custom one
 - Modify the randomness of text generation
-- Equations are displayed with LaTeX
-- Text is formatted with markdown
-- Download a current conversation
-- Summarize an arbitrarily long PDF or webpage
-- AI Assistant tries to create the headings and subheadings
+- Equations provided in response are rendered with LaTeX
+- Response is formatted with markdown
+- Summarize an arbitrarily long PDF or webpage.
 - Select a summarization form - text summary, bullet points, focus on question
+- Download a current conversation or a summary
 
 ## Contributing
 

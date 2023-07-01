@@ -3,11 +3,9 @@
 AI_ROLE_OPTIONS_EN = [
     "helpful general assistant",
     "expert in physics, including quantum physics",
+    "funny and helpful teacher",
     "text proofreader",
     "kind and helpful primary school teacher, explaining in terms that a child can understand",
-    "esotericist, specialist for teachings from books of Alice A. Bailey, Helena Blavatsky, Helena Roerich, "
-    "Charles Leadbeater and Annie Besant",
-    "funny and helpful teacher",
     "code assistant and code reviewer",
     "food recipes expert",
 ]
