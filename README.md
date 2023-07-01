@@ -2,7 +2,7 @@
 
 **Chat with your own assistant that takes on different personalities or request it so summarize arbitrarily long PDF files or web pages.**
 
-GPT Chat and Summarization Assistant is a Python web app (using ![Dash framework](https://github.com/plotly/dash)) made to be easy and flexible to use. You can put a personality on it and have a nice discussion. By setting the randomness factor you can influence the "creativity" of responses. 
+GPT Chat and Summarization Assistant is a Python web app (using ![Dash framework](https://external.ink?to=/github.com/plotly/dash)) made to be easy and flexible to use. You can put a personality on it and have a nice discussion. By setting the randomness factor you can influence the "creativity" of responses. 
 The AI Assistant can summarize an arbitrarily long PDF file or a web page - as an ordinary textual summary, as bullets or with a focus on a specific question.
 
 ## Usage
