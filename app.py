@@ -177,9 +177,10 @@ def main_UI():
                     html.H5('Max % of original:'),
                     dbc.Input(id='summ-percent',
                               type='number',
-                              min=5, max=90,
+                              min=1, max=99,
                               value=10,
-                              step=5,
+                              step=1,
+
                               ),
                     html.Br(),
                     dbc.Button("Download",
@@ -354,6 +355,9 @@ def update_answer_output(prompt_button_clicks, history, outputs, sys_prompt, ai_
     if outputs is None:
         outputs = []
 
+    if random_value is None:
+        random_value = 0.8
+
     api_error = False
 
     # initially, add system prompt to history
@@ -511,6 +515,10 @@ def update_summarize_output(summ_button_clicks,
     url_text = ''
     num_words = 0
     summ_outputs = []
+    if summ_percentage is None:
+        summ_percentage = 10
+    if randomness is None:
+        randomness = 0.8
 
     # listen for button clicks
     trigger_id = ctx.triggered_id
@@ -551,6 +559,8 @@ def update_summarize_output(summ_button_clicks,
                                                randomness=randomness)
                     except openai.error.OpenAIError as e:
                         output_string = f"OpenAI API error: {e}"
+                    except ValueError as e:
+                        output_string = f"Error: {e}"
                     else:
                         if summ_type == AI_SUMMARIZATION_TYPE["FOCUS_QUESTION"]:
                             output_string = f'Summary of the content at {url_input} with {num_words} words to max ' \

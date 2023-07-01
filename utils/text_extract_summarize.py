@@ -75,11 +75,25 @@ def extract_text_from_pdf(pdf_file: io.BytesIO) -> tuple[str, int]:
     return pdf_text, num_words
 
 
-def split_into_sentences(text: str) -> list[str]:
+def split_into_sentences(text: str, tokens_limit: int) -> list[str]:
     """
     Split a text into sentences.
     """
-    return sent_tokenize(text)
+    list_of_sentences = sent_tokenize(text)
+    resulting_list = []
+    chars_limit = int(tokens_limit * 4 * 0.9)  # 4 is an average number of characters per token, we take 90% for safety
+
+    for sentence in list_of_sentences:
+        if len(sentence) > chars_limit:
+            for i in range(0, len(sentence), chars_limit):
+                if i + chars_limit <= len(sentence):
+                    resulting_list.append(sentence[i:i + chars_limit])
+                else:
+                    resulting_list.append(sentence[i:])
+        else:
+            resulting_list.append(sentence)
+
+    return resulting_list
 
 
 def split_into_chunks(sentences: list[str], tokens_limit: int):
@@ -93,6 +107,10 @@ def split_into_chunks(sentences: list[str], tokens_limit: int):
 
     for sentence in sentences:
         sentence_tokens = num_tokens_in_string(sentence)
+
+        if sentence_tokens > tokens_limit:
+            raise ValueError(f'Sentence with {sentence_tokens} tokens exceeds the limit of {tokens_limit} tokens.')
+
         if current_chunk_tokens + sentence_tokens > tokens_limit:
             chunks.append(current_chunk)
             current_chunk = sentence
@@ -188,8 +206,13 @@ def process_text(content_text: str,
     num_tokens = num_tokens_in_string(content_text)
     print(f'\nNumber of tokens in the content: {num_tokens}')
 
-    sentences = split_into_sentences(content_text)
-    chunks = split_into_chunks(sentences, tokens_limit)
+    sentences = split_into_sentences(content_text, tokens_limit)
+
+    try:
+        chunks = split_into_chunks(sentences, tokens_limit)
+    except ValueError as e:
+        raise
+
     num_chunks = len(chunks)
 
     summary_pieces = ""
@@ -207,7 +230,8 @@ def process_text(content_text: str,
             raise
         else:
             summary_pieces = summary_pieces + '\n\n' + summarization
-            return summary_pieces
+
+    return summary_pieces
 
 
 def tag_visible(element) -> bool:
